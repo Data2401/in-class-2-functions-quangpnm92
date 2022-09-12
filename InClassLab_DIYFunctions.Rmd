@@ -116,7 +116,7 @@ roll_bias = function()
   return(result)
 }
 
-competeDice15 = function (first1, last1, first2, last2)
+competeDice_bias15 = function (first1, last1, first2, last2)
 {
   result1 = 0
   result2 = 0
@@ -136,6 +136,6 @@ competeDice15 = function (first1, last1, first2, last2)
   else 
     print((getName(first2, last2)))
 }
-abc = competeDice15 ("Quang", "Pham", "John", "Doe")
+abc = competeDice_bias15 ("Quang", "Pham", "John", "Doe")
 ```
 
