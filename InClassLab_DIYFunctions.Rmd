@@ -57,9 +57,9 @@ competeDice = function (first1, last1, first2, last2)
   dice2 = roll()
   
   if (dice1 > dice2)
-    print((getName(first1, last1)), dice1)
+    print((getName(first1, last1)))
   else if (dice1 < dice2)
-    print((getName(first2, last2)), dice2)
+    print((getName(first2, last2)))
   
   else if (dice1 == dice2)
   {
@@ -100,7 +100,7 @@ competeDice15 = function (first1, last1, first2, last2)
   
   if (result1 > result2)
     print((getName(first1, last1)))
-  else 
+  else if (result1 < result2)
     print((getName(first2, last2)))
 }
 abc = competeDice15 ("Quang", "Pham", "John", "Doe")
