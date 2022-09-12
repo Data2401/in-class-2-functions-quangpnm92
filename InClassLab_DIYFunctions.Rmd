@@ -1,0 +1,141 @@
+---
+title: "In Class Lab"
+author: "Dr. Shoemaker"
+date: "DATA 2401"
+output: html_document
+---
+**Note: Your exam will be in a similar format to this (RMarkdown File with Questions and Code chunks for your answers), so make sure you have the process for knitting to html working.** 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## In Class Activity 
+
+1. Write a function to simulate rolling a 6-sided die and returns the result.
+
+```{r}
+roll = function()
+{
+  result = sample(1:6,1)
+  return(result)
+}
+roll_dice = roll()
+roll_dice
+```
+
+
+
+1. Write a function to simulate rolling 2 6-sided dice that returns the sum of the rolls. 
+
+```{r}
+total_roll_twice = function()
+{
+  dice1 = sample(1:6,1)
+  dice2 = sample(1:6,1)
+  result = dice1 + dice2
+  return(result)
+}
+roll_dice = total_roll_twice()
+roll_dice
+
+```
+
+
+1. Write a function that takes two people name's as strings, simulates rolling a 6-sided die for each of the names, then returns the name of the person with the higher roll. The function should reroll once on a tie, but if there is a second tie, it should return "draw". 
+
+```{r}
+
+getName = function (first,last)
+{
+  return(paste(first,last))
+}
+
+competeDice = function (first1, last1, first2, last2)
+{
+  dice1 = roll()
+  dice2 = roll()
+  
+  if (dice1 > dice2)
+    print((getName(first1, last1)), dice1)
+  else if (dice1 < dice2)
+    print((getName(first2, last2)), dice2)
+  
+  else if (dice1 == dice2)
+  {
+      dice1 = roll()
+      dice2 = roll()
+      
+      if (dice1 > dice2)
+        print((getName(first1, last1)))
+      else if (dice1 < dice2)
+        print((getName(first2, last2)))
+      
+      else 
+        print("draw")
+  }
+}
+abc = competeDice ("Quang", "Pham", "John", "Doe")
+```
+
+
+2. Write a second function (you may start by modifying the first one) that takes two names as strings, simulates both of them rolling die 15 times, and returns the name of the person who "won" more rolls. Don't reroll ties this time, but don't count them as "wins". 
+
+```{r}
+# Your 15-roll function goes here
+competeDice15 = function (first1, last1, first2, last2)
+{
+  result1 = 0
+  result2 = 0
+  for (i in 1:15)
+  {
+    dice1 = roll()
+    dice2 = roll()
+    
+    if (dice1 > dice2)
+      result1 = result1 + 1
+    else if (dice1 < dice2)
+      result2 = result2 + 1
+  }
+  
+  if (result1 > result2)
+    print((getName(first1, last1)))
+  else 
+    print((getName(first2, last2)))
+}
+abc = competeDice15 ("Quang", "Pham", "John", "Doe")
+```
+
+
+3. Modify your function from (2) so that the person in the first argument has a die that is weighted to get higher numbers more often (you may decide the actual percentage change). Run the function ten or so times. Does the second person ever win?
+
+```{r}
+roll_bias = function()
+{
+  result = sample(1:6, 1, prob = c(0/8,1/8,1/8,1/8,1/8,4/8))
+  return(result)
+}
+
+competeDice15 = function (first1, last1, first2, last2)
+{
+  result1 = 0
+  result2 = 0
+  for (i in 1:15)
+  {
+    dice1 = roll_bias()
+    dice2 = roll()
+    
+    if (dice1 > dice2)
+      result1 = result1 + 1
+    else if (dice1 < dice2)
+      result2 = result2 + 1
+  }
+  
+  if (result1 > result2)
+    print((getName(first1, last1)))
+  else 
+    print((getName(first2, last2)))
+}
+abc = competeDice15 ("Quang", "Pham", "John", "Doe")
+```
+
